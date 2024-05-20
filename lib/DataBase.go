@@ -1,25 +1,21 @@
 package lib
 
-import (
-	//"fmt"
-)
-
 var (
 	ExampleDataBaseJson = []byte(`{
-	"Columns": {
-		"a": [0, 3],
-		"b": [1, 4],
-		"c": [2, 5]
-	},
-	"Forms": {"alt": ["a", "c"]}
+    "Columns": {
+        "a": [0, 3],
+        "b": [1, 4],
+        "c": [2, 5]
+    },
+    "Forms": {"alt": ["a", "c"]}
 }`)
 )
 
 type DataBase struct {
-    Columns map[string][]interface{}
-    Forms map[string][]string
-    Calculations map[string]string
-    Settings map[string]string
+	Columns      map[string][]interface{}
+	Forms        map[string][]string
+	Calculations map[string]string
+	Settings     map[string]string
 }
 
 func (self *DataBase) CleanUp() {
@@ -28,13 +24,13 @@ func (self *DataBase) CleanUp() {
 }
 
 func (self *DataBase) EnsureMainForm() {
-    if self.Forms["main"] == nil {
-        keys := sorted_keys(self.Columns)
-        if  self.Forms == nil {
-             self.Forms = make( map[string][]string )
-        }
-         self.Forms["main"] = keys
-    }
+	if self.Forms["main"] == nil {
+		keys := sorted_keys(self.Columns)
+		if self.Forms == nil {
+			self.Forms = make(map[string][]string)
+		}
+		self.Forms["main"] = keys
+	}
 }
 
 func (self *DataBase) EnsureSettings() {
@@ -53,9 +49,9 @@ func init() {
 	} else {
 		fmt.Printf("%v\n", db)
 	}
-	
+
 	db.EnsureMainForm()
-	
+
 	json, err := StructToJson[DataBase](db, true)
 	if err != nil {
 		fmt.Printf("%v\n", err)

@@ -7,6 +7,7 @@
 *.dll
 *.so
 *.dylib
+db2
 
 # Test binary, built with `go test -c`
 *.test
@@ -20,5 +21,6 @@
 # Go workspace file
 go.work
 
-db2
+# Log files
+*.log
 
